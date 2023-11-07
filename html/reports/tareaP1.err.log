@@ -1,0 +1,66 @@
+Traceback (most recent call last):
+  File "C:\Users\hp\anaconda3\envs\ml_venv\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\hp\anaconda3\envs\ml_venv\lib\site-packages\nbclient\client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "C:\Users\hp\anaconda3\envs\ml_venv\lib\site-packages\jupyter_core\utils\__init__.py", line 173, in wrapped
+    return loop.run_until_complete(inner)
+  File "C:\Users\hp\anaconda3\envs\ml_venv\lib\asyncio\base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "C:\Users\hp\anaconda3\envs\ml_venv\lib\site-packages\nbclient\client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\hp\anaconda3\envs\ml_venv\lib\site-packages\nbclient\client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\hp\anaconda3\envs\ml_venv\lib\site-packages\nbclient\client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+
+
+conn = psycopg2.connect(
+    host=host,
+    port=port,
+    dbname=dbname,
+    user=user,
+    password=password
+)
+
+cursor = conn.cursor()
+
+#cursor.execute('''''')
+create_table_query = """
+CREATE TABLE courses (
+    course_id SERIAL PRIMARY KEY,
+    course_name VARCHAR(60),
+    course_author VARCHAR(40),
+    course_status VARCHAR(20),
+    course_published_dt DATE
+); """
+
+#cursor.execute('''''')
+cursor.execute(create_table_query)
+
+conn.commit()
+conn.close()
+
+
+------------------
+
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mDuplicateTable[0m                            Traceback (most recent call last)
+Cell [1;32mIn[4], line 22[0m
+[0;32m     12[0m create_table_query [38;5;241m=[39m [38;5;124m"""[39m
+[0;32m     13[0m [38;5;124mCREATE TABLE courses ([39m
+[0;32m     14[0m [38;5;124m    course_id SERIAL PRIMARY KEY,[39m
+[1;32m   (...)[0m
+[0;32m     18[0m [38;5;124m    course_published_dt DATE[39m
+[0;32m     19[0m [38;5;124m); [39m[38;5;124m"""[39m
+[0;32m     21[0m [38;5;66;03m#cursor.execute('''''')[39;00m
+[1;32m---> 22[0m [43mcursor[49m[38;5;241;43m.[39;49m[43mexecute[49m[43m([49m[43mcreate_table_query[49m[43m)[49m
+[0;32m     24[0m conn[38;5;241m.[39mcommit()
+[0;32m     25[0m conn[38;5;241m.[39mclose()
+
+[1;31mDuplicateTable[0m: relation "courses" already exists
+
+
