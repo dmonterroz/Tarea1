@@ -367,7 +367,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">2.</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4.</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5.</a></li>
 </ul>
 
             </nav>
@@ -508,25 +508,6 @@ document.write(`
 
 <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">DuplicateTable</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">22</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">create_table_query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span><span class="s2"> CREATE TABLE courses (</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span><span class="s2">     course_id SERIAL PRIMARY KEY,</span>
-<span class="s2">   (...)</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span><span class="s2">     course_published_dt DATE</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span><span class="s2"> ); &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="c1">#cursor.execute(&#39;&#39;&#39;&#39;&#39;&#39;)</span>
-<span class="ne">---&gt; </span><span class="mi">22</span> <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">create_table_query</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span> <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-<span class="ne">DuplicateTable</span>: relation &quot;courses&quot; already exists
 </pre></div>
 </div>
 </div>
@@ -1189,11 +1170,12 @@ Country Code: 1, User Count: 1
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="id4">
-<h1>5<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h1>
+<h1>5.<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h1>
 <p>Importe los datos del precio de Cardano USD (ADA-USD) en su instancia de base de datos Docker, teniendo en cuenta lo explicado durante esta sección. Luego dibuje un gráfico de candlestick para la criptomoneda. En el siguiente link encontrará el CSV de Cardano: Cardano USD (ADA-USD). Describa lo que puede observar en la serie de tiempo. Realice un análisis exploratorio de datos (EDA) para la serie de tiempo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parámetros de conexión</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
+<span class="c1"># Parámetros de conexión</span>
 <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;localhost&quot;</span>
 <span class="n">port</span> <span class="o">=</span> <span class="s2">&quot;5342&quot;</span>
 <span class="n">dbname</span> <span class="o">=</span> <span class="s2">&quot;myname_user&quot;</span>
@@ -1231,7 +1213,9 @@ Country Code: 1, User Count: 1
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parámetros de conexión</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="c1"># Parámetros de conexión</span>
 <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;localhost&quot;</span>
 <span class="n">port</span> <span class="o">=</span> <span class="s2">&quot;5342&quot;</span>
 <span class="n">dbname</span> <span class="o">=</span> <span class="s2">&quot;myname_user&quot;</span>
@@ -1251,7 +1235,7 @@ Country Code: 1, User Count: 1
 
 <span class="c1"># Abrir el archivo CSV</span>
 <span class="n">file</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;C:\Users\hp\Documents\cvs\ADA-USD.csv&#39;</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> <span class="c1">#Aqui tienes que poner el link de tu archivo</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="nb">next</span><span class="p">(</span><span class="n">reader</span><span class="p">)</span>  <span class="c1"># Saltar la cabecera</span>
     <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
@@ -1299,6 +1283,7 @@ Country Code: 1, User Count: 1
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">psycopg2</span>
 
 <span class="c1"># Parámetros de conexión</span>
 <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;localhost&quot;</span>
@@ -1327,6 +1312,8 @@ Country Code: 1, User Count: 1
                 <span class="n">low</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;low&#39;</span><span class="p">],</span>
                 <span class="n">close</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;close&#39;</span><span class="p">])])</span>
 
+
+
 <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Gráfico de Candlestick de Cardano USD (ADA-USD)&#39;</span><span class="p">,</span>
                   <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Fecha&#39;</span><span class="p">,</span>
                   <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Precio&#39;</span><span class="p">)</span>
@@ -1342,12 +1329,14 @@ Country Code: 1, User Count: 1
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\hp\AppData\Local\Temp\ipykernel_15072\2595964484.py:22: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
-  df = pd.read_sql(&quot;SELECT * FROM cardano_prices&quot;, conn)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\hp\AppData\Local\Temp\ipykernel_8216\3087586771.py:23: UserWarning:
+
+pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
 </pre></div>
 </div>
 </div>
 </div>
+<p><img alt="imagen.jpg" src="_images/velas.jpeg" /></p>
 <p>En el análisis de la serie de tiempo, se observa que en los años previos a 2018, el valor de la criptomoneda Cardano (ADA) se mantuvo en niveles cercanos a cero. Sin embargo, a partir de enero de ese año, se produjo un aumento significativo en el precio, alcanzando aproximadamente 1 dólar. Posteriormente, a lo largo de ese año, el precio experimentó una disminución constante hasta regresar a valores cercanos a cero.</p>
 <p>En 2021, se registró nuevamente un rápido crecimiento en el valor de la moneda, llegando a un pico de alrededor de 2.5 dólares. En julio del mismo año, se produjo otro pico que elevó el precio a aproximadamente 3.2 dólares, y el año 2021 se cerró con un valor cercano a 2.5 dólares.</p>
 <p>Este análisis muestra la naturaleza volátil e impredecible de esta criptomoneda, lo que dificulta la predicción de su comportamiento.</p>
@@ -1486,7 +1475,7 @@ La serie temporal no es estacionaria (no podemos rechazar la hipótesis nula)
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">2.</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4.</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5.</a></li>
 </ul>
 
   </nav></div>
